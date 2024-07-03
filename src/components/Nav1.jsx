@@ -24,8 +24,10 @@ function Nav1() {
         <div className="cursor-pointer">
           <IoMdNotifications className="text-xl" />
         </div>
-        <div className="cursor-pointer">
+        <div >
+        <Link to="/cart" className="cursor-pointer">
           <FaShoppingCart className="text-xl" />
+        </Link>
         </div>
       </div>
     </div>

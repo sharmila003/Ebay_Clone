@@ -1,15 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import  { useState, useEffect } from 'react';
+import { useSelector,useDispatch } from 'react-redux';
 import collectibles from "../data/Collectibles";
 import industrial from "../data/Industrial";
 import sports from "../data/sportsData";
 import Nav1 from '../components/Nav1';
 import Nav2 from '../components/Nav2';
 import Footer from '../components/footer';
+import { useNavigate } from 'react-router-dom';
+import { addToCart } from '../components/cartslice';
+
+
 
 function SingleProduct() {
     const [description, setDescription] = useState({});
     const Id = useSelector(state => state.product.selectedProductId);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
 
     useEffect(() => {
         
@@ -40,6 +47,11 @@ function SingleProduct() {
         }
     }, [Id]);
 
+    const handleAddToCart = () => {
+        dispatch(addToCart(description));
+        navigate('/cart');
+    };
+    
     return (
         <div className='w-full'>
             <div className='w-[90%] mx-auto'><Nav1 /></div>
@@ -64,7 +76,10 @@ function SingleProduct() {
                         )}
                         <div className='mt-4 flex space-x-4'>
                             <button className='bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600'>Buy it Now</button>
-                            <button className='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600'>Add to Cart</button>
+                            <button className='bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600' 
+                                onClick={handleAddToCart}
+                            >
+                            Add to Cart</button>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ import AdvancedSearch from './pages/AdvanceSearch'
 import SingleProduct from './pages/SingleProduct'
 import SignIn from './pages/SignIn';
 import Register from './pages/Register';
-
+import Cart  from './pages/Cart';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         <Route path='/singleProduct' element={<SingleProduct/>}/>
         <Route path="/signin" element={<SignIn />} />
         <Route path="/register" element={<Register />} />
-      
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   )
