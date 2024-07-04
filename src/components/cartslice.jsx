@@ -1,13 +1,21 @@
-// cartSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+//cartSlice.js
+import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
+
+export const fetchCartData = createAsyncThunk('cart/fetchCartData', async () => {
+    const response = await fetch('/api/cart'); // Replace with your API endpoint
+    const data = await response.json();
+    return data;
+});
+
 
 
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
-        items: []
-    },
-    
+        items: [],
+        status: 'idle',
+        error: null,
+      },
     reducers: {
         addToCart: (state, action) => {
             state.items.push(action.payload);
@@ -22,8 +30,24 @@ const cartSlice = createSlice({
             }
         }
 
-    }
-});
+     },
+    extraReducers: (builder) => {
+        builder
+          .addCase(fetchCartData.pending, (state) => {
+            state.status = 'loading';
+          })
+          .addCase(fetchCartData.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            state.items = action.payload;
+          })
+          .addCase(fetchCartData.rejected, (state, action) => {
+            state.status = 'failed';
+            state.error = action.error.message;
+          });
+    },
 
+});
 export const { addToCart,removeFromCart,updateQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
+
+

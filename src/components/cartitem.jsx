@@ -1,5 +1,5 @@
 'use client'
-import { useCart } from "../context/cart"
+/*import { useCart } from "../context/cart"
 import { toast } from "react-toastify"
 
 export default function CartItem({ product }) {
@@ -45,4 +45,4 @@ export default function CartItem({ product }) {
         </div>
     </>
   )
-}
+}*/

@@ -23,13 +23,18 @@ function SingleProduct() {
         const fetchProductData = async () => {
             try {
                 const res = await fetch(`https://fakestoreapi.com/products/${Id}`);
-                const json = await res.json();
-                if (json) {
-                    setDescription(json);
+                if (res.ok) {
+                    const json = await res.json();
+                    if (json) {
+                        setDescription(json);
+                    }
+                } else {
+                    throw new Error('API request failed or returned empty response');
                 }
             } catch (error) {
                 console.error('Error fetching product data:', error);
             }
+           
         };
 
         if (Id) {
