@@ -17,6 +17,9 @@ const cartSlice = createSlice({
         error: null,
       },
     reducers: {
+        setCartItems(state, action) {
+        state.items = action.payload;
+        },
         addToCart: (state, action) => {
             state.items.push(action.payload);
         },
@@ -31,7 +34,7 @@ const cartSlice = createSlice({
         }
 
      },
-    extraReducers: (builder) => {
+    /*extraReducers: (builder) => {
         builder
           .addCase(fetchCartData.pending, (state) => {
             state.status = 'loading';
@@ -44,10 +47,10 @@ const cartSlice = createSlice({
             state.status = 'failed';
             state.error = action.error.message;
           });
-    },
+    },*/
 
 });
-export const { addToCart,removeFromCart,updateQuantity } = cartSlice.actions;
+export const { setCartItems,addToCart,removeFromCart,updateQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
 
 

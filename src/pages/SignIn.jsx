@@ -13,15 +13,22 @@ const SignIn = () => {
     console.log("SignIn button clicked"); // Debugging log
     console.log("Email:", email); // Debugging log
     console.log("Password:", password); // Debugging log
+
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      console.log("SignIn successful"); // Debugging log
-      navigate('/');
-      // Handle successful sign-in (e.g., redirect to another page)
+        await signInWithEmailAndPassword(auth, email, password);
+        console.log("SignIn successful"); // Debugging log
+
+        // Store the user email in localStorage
+        localStorage.setItem('userEmail', email);
+        console.log("User email stored in localStorage"); // Debugging log
+
+        // Handle successful sign-in (e.g., redirect to another page)
+        navigate('/');
     } catch (error) {
-      console.error('Error signing in:', error.message);
+        console.error('Error signing in:', error.message);
     }
-  };
+};
+
 
   return (
     <div>

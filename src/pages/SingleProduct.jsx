@@ -118,15 +118,15 @@ function SingleProduct() {
         const fetchProductData = async () => {
             try {
                 const res = await fetch(`https://fakestoreapi.com/products/${selectedProductId}`);
-                console.log('Response status:', res);
-                const text = await res.text(); // Get response as text
-                console.log('API Response:', text); 
-                /*if (res.ok) {
-                    const json = await res.json();
+                //console.log('Response status:', res);
+                //const text = await res.text(); // Get response as text
+                //console.log('API Response:', text); 
+                if (res.ok) {
+                    const json = await res?.json();
                     setDescription(json);
                 } else {
                     throw new Error('API request failed or returned empty response');
-                }*/
+                }
             } catch (error) {
                 console.error('Error fetching product data:', error);
             }
@@ -142,15 +142,18 @@ function SingleProduct() {
         const userEmail = localStorage.getItem('userEmail');
         if (!userEmail) {
             // Navigate to home or login page if user is not signed in
+            console.log('User not signed in, navigating to home page.');
             navigate('/');
         } else {
             // Dispatch action to add item to cart
+            console.log('User signed in, adding item to cart:', description);
             dispatch(addToCart(description));
             // Navigate to cart page
+            console.log('Navigating to cart page.');
             navigate('/cart');
         }
     };
-
+    
     return (
         <div className='w-full'>
             <div className='w-[90%] mx-auto'><Nav1 /></div>
@@ -193,3 +196,4 @@ function SingleProduct() {
 }
 
 export default SingleProduct;
+
