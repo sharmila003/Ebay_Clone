@@ -8,8 +8,6 @@ export const fetchCartData = createAsyncThunk('cart/fetchCartData', async () => 
     return data;
 });
 
-
-
 const cartSlice = createSlice({
     name: 'cart',
     initialState: {
@@ -25,8 +23,9 @@ const cartSlice = createSlice({
             state.items.push(action.payload);
         },
         removeFromCart: (state, action) => {
-            state.items.splice(action.payload, 1);
+          state.items.splice(action.payload, 1);
         },
+        
         updateQuantity: (state, action) => {
             const { index, quantity } = action.payload;
             if (state.items[index]) {
@@ -35,7 +34,7 @@ const cartSlice = createSlice({
         }
 
      },
-    /*extraReducers: (builder) => {
+     /*extraReducers: (builder) => {
         builder
           .addCase(fetchCartData.pending, (state) => {
             state.status = 'loading';
