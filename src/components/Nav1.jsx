@@ -15,9 +15,11 @@ function Nav1() {
     setIsSignedIn(userSignedIn);
   }, []);
 
+  //correct my code, it is not clearing my local storage 
   const handleSignOut = () => {
     setIsSignedIn(false);
     localStorage.setItem('userSignedIn', 'false');
+    localStorage.clear();
     navigate('/');
   };
 

@@ -4,6 +4,7 @@ import { createSlice,createAsyncThunk } from '@reduxjs/toolkit';
 export const fetchCartData = createAsyncThunk('cart/fetchCartData', async () => {
     const response = await fetch('/api/cart'); // Replace with your API endpoint
     const data = await response.json();
+    console.log(data);
     return data;
 });
 
