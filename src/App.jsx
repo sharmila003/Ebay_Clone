@@ -7,7 +7,7 @@ import SingleProduct from './pages/SingleProduct'
 import SignIn from './pages/SignIn';
 import Register from './pages/Register';
 import Cart  from './pages/Cart';
-//import  Nav1  from './components/Nav1';
+
 
 function App() {
  
@@ -15,7 +15,6 @@ function App() {
   
   return (
     <div>
-      
       <Routes>
         <Route path='/' element={<Home/>}/>
         <Route path='/advance' element={<AdvancedSearch/>}/>
@@ -25,7 +24,6 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
-     
     </div>
   )
 }
